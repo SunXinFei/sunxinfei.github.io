@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2018/06/11/NewBlog/</loc>
+    <lastmod>2018-06-11T01:48:17.890Z</lastmod>
+    <data>
+        <display>
+        <title>博客迁移</title>
+        <pubTime>2018-06-11T01:42:37.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/06/%E8%AE%A9%E7%99%BE%E5%BA%A6%E6%94%B6%E5%BD%95Github%E4%B8%AD%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2018-03-23T08:10:37.920Z</lastmod>
+    <data>
+        <display>
+        <title>让百度收录Github中的博客（第三方托管和CDN加速）</title>
+        <pubTime>2017-05-06T03:09:48.000Z</pubTime>
+        
+        <tag>SEO</tag>
+         
+        <tag>Github</tag>
+         
+        <tag>CDN</tag>
+         
+         
+           
+             
+              <breadCrumb title="博客" url="http://blog.sunxinfei.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2018/01/23/%E7%BD%91%E9%A1%B5%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2018-03-23T08:10:37.916Z</lastmod>
+    <data>
+        <display>
+        <title>移动H5前端性能优化指南</title>
+        <pubTime>2018-01-23T03:57:46.000Z</pubTime>
+        
+        <tag>web前端</tag>
+         
+        <tag>优化</tag>
+         
+         
+           
+             
+              <breadCrumb title="web前端" url="http://blog.sunxinfei.com/categories/web%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/04/30/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2018-03-23T08:10:37.911Z</lastmod>
+    <data>
+        <display>
+        <title>科学上网工具</title>
+        <pubTime>2017-04-30T03:18:09.000Z</pubTime>
+        
+        <tag>工具</tag>
+         
+        <tag>科学上网</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具" url="http://blog.sunxinfei.com/categories/%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/10/19/%E7%9B%91%E5%90%AC%E9%BB%84%E9%87%91%E4%BB%B7%E6%A0%BC%E5%8F%98%E5%8C%96%E7%9A%84%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2018-03-23T08:10:37.908Z</lastmod>
+    <data>
+        <display>
+        <title>监听黄金价格变化的任务计划程序</title>
+        <pubTime>2017-10-19T02:10:55.000Z</pubTime>
+        
+        <tag>工具</tag>
+         
+        <tag>Fiddler</tag>
+         
+        <tag>任务计划程序</tag>
+         
+         
+           
+             
+              <breadCrumb title="程序开发" url="http://blog.sunxinfei.com/categories/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/03/%E5%AE%89%E8%A3%85Next%E4%B8%BB%E9%A2%98/</loc>
+    <lastmod>2018-03-23T08:10:37.903Z</lastmod>
+    <data>
+        <display>
+        <title>安装Next主题</title>
+        <pubTime>2017-05-03T13:57:48.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>Next</tag>
+         
+        <tag>静态博客</tag>
+         
+         
+           
+             
+              <breadCrumb title="博客" url="http://blog.sunxinfei.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/04/21/%E4%BD%BF%E7%94%A8hexo%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2018-03-23T08:10:37.898Z</lastmod>
+    <data>
+        <display>
+        <title>使用Hexo创建静态博客</title>
+        <pubTime>2017-04-21T09:58:50.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>静态博客</tag>
+         
+        <tag>Github</tag>
+         
+         
+           
+             
+              <breadCrumb title="博客" url="http://blog.sunxinfei.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/06/%E4%BD%BF%E7%94%A8Git%E5%A4%87%E4%BB%BDHexo%E5%B7%A5%E7%A8%8B%E6%96%87%E4%BB%B6/</loc>
+    <lastmod>2018-03-23T08:10:37.893Z</lastmod>
+    <data>
+        <display>
+        <title>使用Git备份博客工程文件</title>
+        <pubTime>2017-05-06T03:43:10.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="博客" url="http://blog.sunxinfei.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/30/win10-cmd-popwindow/</loc>
+    <lastmod>2018-03-23T08:10:37.889Z</lastmod>
+    <data>
+        <display>
+        <title>解决win10不定时弹窗问题</title>
+        <pubTime>2017-05-30T15:29:14.000Z</pubTime>
+        
+        <tag>WIN10</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决问题" url="http://blog.sunxinfei.com/categories/%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/31/sql-optimize/</loc>
+    <lastmod>2018-03-23T08:10:37.885Z</lastmod>
+    <data>
+        <display>
+        <title>SQL优化小探</title>
+        <pubTime>2017-05-31T01:48:08.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>SQL优化</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.sunxinfei.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2018/02/01/promise%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2018-03-23T08:10:37.881Z</lastmod>
+    <data>
+        <display>
+        <title>promise实现</title>
+        <pubTime>2018-02-01T12:08:01.000Z</pubTime>
+        
+        <tag>web前端</tag>
+         
+        <tag>造轮子</tag>
+         
+         
+           
+             
+              <breadCrumb title="web前端" url="http://blog.sunxinfei.com/categories/web%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/06/13/chrome-Tab-Search/</loc>
+    <lastmod>2018-03-23T08:10:37.869Z</lastmod>
+    <data>
+        <display>
+        <title>chrome地址栏百度搜索跳转百度首页</title>
+        <pubTime>2017-06-13T15:39:28.000Z</pubTime>
+        
+        <tag>Chrome</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决问题" url="http://blog.sunxinfei.com/categories/%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/06/28/Win10-Ctrl-Shift-F/</loc>
+    <lastmod>2018-03-23T08:10:37.865Z</lastmod>
+    <data>
+        <display>
+        <title>VS中Ctrl+Shift+F全局搜索的快捷键失效</title>
+        <pubTime>2017-06-28T02:09:20.000Z</pubTime>
+        
+        <tag>WIN10</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决问题" url="http://blog.sunxinfei.com/categories/%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/06/28/VS2013-config-error/</loc>
+    <lastmod>2018-03-23T08:10:37.861Z</lastmod>
+    <data>
+        <display>
+        <title>Visual Studio（VS2013）的F12跳转到元数据，不跳转定义</title>
+        <pubTime>2017-06-28T01:58:51.000Z</pubTime>
+        
+        <tag>VS2013</tag>
+         
+        <tag>Visual Studio</tag>
+         
+         
+           
+             
+              <breadCrumb title="解决问题" url="http://blog.sunxinfei.com/categories/%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/02/Sublime-Markdown/</loc>
+    <lastmod>2018-03-23T08:10:37.857Z</lastmod>
+    <data>
+        <display>
+        <title>Sublime + Markdown</title>
+        <pubTime>2017-05-02T13:37:10.000Z</pubTime>
+        
+        <tag>工具</tag>
+         
+        <tag>静态博客</tag>
+         
+         
+           
+             
+              <breadCrumb title="博客" url="http://blog.sunxinfei.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/07/02/Mysql-get-sequence-in-group/</loc>
+    <lastmod>2018-03-23T08:10:37.853Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL获取组内排序的排名(Seq)</title>
+        <pubTime>2017-07-02T07:55:43.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>SQL语句</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.sunxinfei.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2018/01/24/JavaScript%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2018-03-23T08:10:37.849Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript中的一些方法实现</title>
+        <pubTime>2018-01-24T14:50:45.000Z</pubTime>
+        
+        <tag>web前端</tag>
+         
+        <tag>造轮子</tag>
+         
+         
+           
+             
+              <breadCrumb title="web前端" url="http://blog.sunxinfei.com/categories/web%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/04/Hexo-SEO/</loc>
+    <lastmod>2018-03-23T08:10:37.831Z</lastmod>
+    <data>
+        <display>
+        <title>Blog + SEO</title>
+        <pubTime>2017-05-04T15:46:40.000Z</pubTime>
+        
+        <tag>SEO</tag>
+         
+        <tag>Hexo</tag>
+         
+        <tag>Next</tag>
+         
+        <tag>静态博客</tag>
+         
+         
+           
+             
+              <breadCrumb title="博客" url="http://blog.sunxinfei.com/categories/%E5%8D%9A%E5%AE%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2018/01/16/GroupBy%E4%B8%8ESUM%E4%B8%8EDISTINCT/</loc>
+    <lastmod>2018-03-23T08:10:37.827Z</lastmod>
+    <data>
+        <display>
+        <title>GroupBy与SUM与DISTINCT</title>
+        <pubTime>2018-01-16T05:02:59.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+        <tag>SQL语句</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://blog.sunxinfei.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/07/28/Fiddler/</loc>
+    <lastmod>2018-03-23T08:10:37.823Z</lastmod>
+    <data>
+        <display>
+        <title>使用Fiddler修改调试生产服务器的前端代码</title>
+        <pubTime>2017-07-28T05:51:28.000Z</pubTime>
+        
+        <tag>工具</tag>
+         
+        <tag>Fiddler</tag>
+         
+         
+           
+             
+              <breadCrumb title="工具" url="http://blog.sunxinfei.com/categories/%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.sunxinfei.com/2017/05/09/AngualarJS-Start/</loc>
+    <lastmod>2018-03-23T08:10:37.819Z</lastmod>
+    <data>
+        <display>
+        <title>AngualarJS项目实战部署之企业应用</title>
+        <pubTime>2017-05-09T07:17:54.000Z</pubTime>
+        
+        <tag>AngularJS</tag>
+         
+        <tag>前端框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="AngularJS1.x" url="http://blog.sunxinfei.com/categories/AngularJS1-x/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>

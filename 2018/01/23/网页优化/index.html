@@ -1,0 +1,1045 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web前端,优化," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XinFei's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://op3cmr9ix.bkt.clouddn.com/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="15年的为知笔记，有些还很值得参考，来自腾讯ISUX的分享，主要内容涉及加载优化、图片优化、脚本优化、CSS优化、渲染优化">
+<meta name="keywords" content="web前端,优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动H5前端性能优化指南">
+<meta property="og:url" content="http://blog.sunxinfei.com/2018/01/23/网页优化/index.html">
+<meta property="og:site_name" content="XinFei&#39;s Notes">
+<meta property="og:description" content="15年的为知笔记，有些还很值得参考，来自腾讯ISUX的分享，主要内容涉及加载优化、图片优化、脚本优化、CSS优化、渲染优化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://op3cmr9ix.bkt.clouddn.com/blog/web-optimizer/h5.png">
+<meta property="og:updated_time" content="2018-03-23T08:10:37.916Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动H5前端性能优化指南">
+<meta name="twitter:description" content="15年的为知笔记，有些还很值得参考，来自腾讯ISUX的分享，主要内容涉及加载优化、图片优化、脚本优化、CSS优化、渲染优化">
+<meta name="twitter:image" content="http://op3cmr9ix.bkt.clouddn.com/blog/web-optimizer/h5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.sunxinfei.com/2018/01/23/网页优化/"/>
+
+
+
+
+
+  <title> 移动H5前端性能优化指南 | XinFei's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75240528-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0c185952c5af8f1598ad1fc0e2899a81";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XinFei's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-h5">
+          <a href="/H5" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            H5作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/Travel" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map"></i> <br />
+            
+            去过的地方
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.sunxinfei.com/2018/01/23/网页优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XinFei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinFei's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动H5前端性能优化指南
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T11:57:46+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/23/网页优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/01/23/网页优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2018/01/23/网页优化/" class="leancloud_visitors" data-flag-title="移动H5前端性能优化指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>15年的为知笔记，有些还很值得参考，来自腾讯ISUX的分享，主要内容涉及加载优化、图片优化、脚本优化、CSS优化、渲染优化<br><a id="more"></a><br><img src="http://op3cmr9ix.bkt.clouddn.com/blog/web-optimizer/h5.png" alt="移动H5前端性能优化指南"><br>概述</p>
+<ol>
+<li>PC优化手段在Mobile同样适用</li>
+<li>在Mobile侧我们提出三秒种渲染完成首屏指标</li>
+<li>基于第二点，首屏加载3秒完成或使用Loading</li>
+<li>基于联通3G网络平均338KB/s(2.71Mb/s)，所以首屏资源不应超过1014KB</li>
+<li>Mobile侧因手机配置原因，除加载外渲染速度也是优化重点</li>
+<li>基于第五点，要合理处理代码减少渲染损耗</li>
+<li>基于第二、第五点，所有影响首屏加载和渲染的代码应在处理逻辑中后置</li>
+<li>加载完成后用户交互使用时也需注意性能<br>优化指南</li>
+</ol>
+<h3 id="加载优化"><a href="#加载优化" class="headerlink" title="[加载优化]"></a>[加载优化]</h3><p>加载过程是最为耗时的过程，可能会占到总耗时的80%时间，因此是优化的重点</p>
+<p>· 减少HTTP请求<br>众所周知 ，在 HTTP/1.1 协议中 「浏览器客户端在同一时间，针对同一域名下的请求有一定数量限制。超过限制数目的请求会被阻塞」。一些站点会有多个静态资源 CDN 域名的原因之一。因为手机浏览器同时响应请求为4个请求（Android支持4个，iOS 5后可支持6个），所以要尽量减少页面的请求数，首次加载同时请求数不能超过4个<br>a) 合并CSS、JavaScript<br>b) 合并小图片，使用雪碧图</p>
+<p>· 缓存<br>使用缓存可以减少向服务器的请求数，节省加载时间，所以所有静态资源都要在服务器端设置缓存，并且尽量使用长Cache（长Cache资源的更新可使用时间戳）<br>a) 缓存一切可缓存的资源<br>b) 使用长Cache（使用时间戳更新Cache）<br>c) 使用外联式引用CSS、JavaScript</p>
+<p>· 压缩HTML、CSS、JavaScript<br>减少资源大小可以加快网页显示速度，所以要对HTML、CSS、JavaScript等进行代码压缩，并在服务器端设置GZip<br>a) 压缩（例如，多余的空格、换行符和缩进）<br>b) 启用GZip</p>
+<p>· 无阻塞<br>写在HTML头部的JavaScript（无异步），和写在HTML标签中的Style会阻塞页面的渲染，因此CSS放在页面头部并使用Link方式引入，避免在HTML标签中写Style，JavaScript放在页面尾部或使用异步方式加载</p>
+<p>· 使用首屏加载<br>首屏的快速显示，可以大大提升用户对页面速度的感知，因此应尽量针对首屏的快速显示做优化</p>
+<p>· 按需加载<br>将不影响首屏的资源和当前屏幕资源不用的资源放到用户需要时才加载，可以大大提升重要资源的显示速度和降低总体流量<br>PS：按需加载会导致大量重绘，影响渲染性能<br>a) LazyLoad<br>b) 滚屏加载<br>c) 通过Media Query加载</p>
+<p>· 预加载<br>大型重资源页面（如游戏）可使用增加Loading的方法，资源加载完成后再显示页面。但Loading时间过长，会造成用户流失<br>对用户行为分析，可以在当前页加载下一页资源，提升速度<br>a) 可感知Loading(如进入空间游戏的Loading)<br>b) 不可感知的Loading（如提前加载下一页）</p>
+<p>· 压缩图片<br>图片是最占流量的资源，因此尽量避免使用他，使用时选择最合适的格式（实现需求的前提下，以大小判断），合适的大小，然后使用智图压缩，同时在代码中用Srcset来按需显示<br>PS：过度压缩图片大小影响图片显示效果<br>a) 使用智图（ <a href="http://zhitu.tencent.com/" target="_blank" rel="noopener">http://zhitu.tencent.com/</a> ）<br>b) 使用其它方式代替图片(1. 使用CSS3 2. 使用SVG 3. 使用IconFont)<br>c) 使用Srcset<br>d) 选择合适的图片(1. webP优于JPG 2. PNG8优于GIF)<br>e) 选择合适的大小（1. 首次加载不大于1014KB 2. 不宽于640（基于手机屏幕一般宽度））</p>
+<p>· 减少Cookie<br>Cookie会影响加载速度，所以静态资源域名不使用Cookie</p>
+<p>· 避免重定向<br>重定向会影响加载速度，所以在服务器正确设置避免重定向</p>
+<p>· 异步加载第三方资源<br>第三方资源不可控会影响页面的加载和显示，因此要异步加载第三方资源</p>
+<h3 id="脚本执行优化"><a href="#脚本执行优化" class="headerlink" title="[脚本执行优化]"></a>[脚本执行优化]</h3><p>脚本处理不当会阻塞页面加载、渲染，因此在使用时需当注意</p>
+<p>· CSS写在头部，JavaScript写在尾部或异步</p>
+<p>· 避免图片和iFrame等的空Src<br>空Src会重新加载当前页面，影响速度和效率</p>
+<p>· 尽量避免重设图片大小<br>重设图片大小是指在页面、CSS、JavaScript等中多次重置图片大小，多次重设图片大小会引发图片的多次重绘，影响性能</p>
+<p>· 图片尽量避免使用DataURL<br>DataURL图片没有使用图片的压缩算法文件会变大，并且要解码后再渲染，加载慢耗时长</p>
+<h3 id="CSS优化"><a href="#CSS优化" class="headerlink" title="[CSS优化]"></a>[CSS优化]</h3><p>· 尽量避免写在HTML标签中写Style属性</p>
+<p>· 避免CSS表达式<br>CSS表达式的执行需跳出CSS树的渲染，因此请避免CSS表达式</p>
+<p>· 移除空的CSS规则<br>空的CSS规则增加了CSS文件的大小，且影响CSS树的执行，所以需移除空的CSS规则</p>
+<p>· 正确使用Display的属性<br>Display属性会影响页面的渲染，因此请合理使用<br>a) display:inline后不应该再使用width、height、margin、padding以及float<br>b) display:inline-block后不应该再使用float<br>c) display:block后不应该再使用vertical-align<br>d) display:table-*后不应该再使用margin或者float</p>
+<p>· 不滥用Float<br>Float在渲染时计算量比较大，尽量减少使用</p>
+<p>· 不滥用Web字体<br>Web字体需要下载，解析，重绘当前页面，尽量减少使用</p>
+<p>· 不声明过多的Font-size<br>过多的Font-size引发CSS树的效率</p>
+<p>· 值为0时不需要任何单位<br>为了浏览器的兼容性和性能，值为0时不要带单位</p>
+<p>· 标准化各种浏览器前缀<br>a) 无前缀应放在最后<br>b) CSS动画只用 （-webkit- 无前缀）两种即可<br>c) 其它前缀为 -webkit- -moz- -ms- 无前缀 四种，（-o-Opera浏览器改用blink内核，所以淘汰）</p>
+<p>· 避免让选择符看起来像正则表达式<br>高级选择器执行耗时长且不易读懂，避免使用</p>
+<h3 id="JavaScript执行优化"><a href="#JavaScript执行优化" class="headerlink" title="[JavaScript执行优化]"></a>[JavaScript执行优化]</h3><p>· 减少重绘和回流<br>a) 避免不必要的Dom操作<br>b) 尽量改变Class而不是Style，使用classList代替className<br>c) 避免使用document.write<br>d) 减少drawImage</p>
+<p>· 缓存Dom选择与计算<br>每次Dom选择都要计算，缓存他</p>
+<p>· 缓存列表.length<br>每次.length都要计算，用一个变量保存这个值</p>
+<p>· 尽量使用事件代理，避免批量绑定事件</p>
+<p>· 尽量使用ID选择器<br>ID选择器是最快的</p>
+<p>· TOUCH事件优化<br>使用touchstart、touchend代替click，因快影响速度快。但应注意Touch响应过快，易引发误操作</p>
+<h3 id="渲染优化"><a href="#渲染优化" class="headerlink" title="[渲染优化]"></a>[渲染优化]</h3><p>· HTML使用Viewport<br>Viewport可以加速页面的渲染，请使用以下代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">”viewport”</span> <span class="attr">content</span>=<span class="string">”width</span>=<span class="string">device-width,</span> <span class="attr">initial-scale</span>=<span class="string">1″</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>· 减少Dom节点<br>Dom节点太多影响页面的渲染，应尽量减少Dom节点</p>
+<p>· 动画优化<br>a) 尽量使用CSS3动画<br>b) 合理使用requestAnimationFrame动画代替setTimeout<br>c) 适当使用Canvas动画 5个元素以内使用css动画，5个以上使用Canvas动画（iOS8可使用webGL）</p>
+<p>· 高频事件优化<br>Touchmove、Scroll 事件可导致多次渲染<br>a) 使用requestAnimationFrame监听帧变化，使得在正确的时间进行渲染<br>b) 增加响应变化的时间间隔，减少重绘次数</p>
+<p>· GPU加速<br>CSS中以下属性（CSS3 transitions、CSS3 3D transforms、Opacity、Canvas、WebGL、Video）来触发GPU渲染，请合理使用<br>PS：过渡使用会引发手机过耗电增加</p>
+<h3 id="文章中未提到的"><a href="#文章中未提到的" class="headerlink" title="文章中未提到的"></a>文章中未提到的</h3><p>memcache是一套分布式的高速缓存系统，MemCache的工作流程如下：先检查客户端的请求数据是否在memcached中，如有，直接把请求数据返回，不再对数据库进行任何操作；如果请求的数据不在memcached中，就去查数据库，把从数据库中获取的数据返回给客户端，同时把数据缓存一份到memcached中（memcached客户端不负责，需要程序明确实现）；每次更新数据库的同时更新memcached中的数据，保证一致性；当分配给memcached内存空间用完之后，会使用LRU（Least Recently Used，最近最少使用）策略加上到期失效策略，失效数据首先被替换，然后再替换掉最近未使用的数据。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 感谢阅读------</div>
+<br/>
+<div>   
+  <ul class="post-copyright" style="border-left:3px solid #ff1700;list-style:none;margin:2em 0 0;padding:0.5em 1em;background-color:#f9f9f9">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      XinFei
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://blog.sunxinfei.com/2018/01/23/网页优化/" title="移动H5前端性能优化指南">http://blog.sunxinfei.com/2018/01/23/网页优化/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>声明： </strong>
+      原创文章，有问题请评论中留言。支持友情链接。非商业转载请注明作者及出处。商业转载请联系作者本人。
+    </li>
+  </ul>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/wxzf.jpg" alt="XinFei WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/zfbzf.jpg" alt="XinFei Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web前端/" rel="tag"># web前端</a>
+          
+            <a href="/tags/优化/" rel="tag"># 优化</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/16/GroupBy与SUM与DISTINCT/" rel="next" title="GroupBy与SUM与DISTINCT">
+                <i class="fa fa-chevron-left"></i> GroupBy与SUM与DISTINCT
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/24/JavaScript中的一些方法实现/" rel="prev" title="JavaScript中的一些方法实现">
+                JavaScript中的一些方法实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg"
+               alt="XinFei" />
+          <p class="site-author-name" itemprop="name">XinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/SunXinFei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:sunxinfei147@gmail.com" target="_blank" title="eMail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  eMail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载优化"><span class="nav-number">1.</span> <span class="nav-text">[加载优化]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本执行优化"><span class="nav-number">2.</span> <span class="nav-text">[脚本执行优化]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS优化"><span class="nav-number">3.</span> <span class="nav-text">[CSS优化]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript执行优化"><span class="nav-number">4.</span> <span class="nav-text">[JavaScript执行优化]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染优化"><span class="nav-number">5.</span> <span class="nav-text">[渲染优化]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章中未提到的"><span class="nav-number">6.</span> <span class="nav-text">文章中未提到的</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XinFei</span>
+</div>
+
+
+<div class="powered-by">
+  支持游客评论
+</div>
+
+<div class="theme-info">
+  Notes
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 90243, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 90243, xid: "2018/01/23/网页优化/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/90243/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5nYphyQ98AHQaP6RnrI1yJkE-gzGzoHsz", "yM8MfCl0Wziz8f0eWWCfALzA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

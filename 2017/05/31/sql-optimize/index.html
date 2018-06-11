@@ -1,0 +1,1027 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MySQL,SQL优化," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XinFei's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://op3cmr9ix.bkt.clouddn.com/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="由于不是专业搞SQL优化的，可能会显得班门弄斧，请谅解。正在写AngualrJS的我，最近接到一个Task任务，是关于SQL优化的，这个SQL直接拿过来，有500多行，涉及十几个表，其中有五个表的数据最大，测试库的单表大概有几十万以上的数据，这个客户的数据库有400G以上。整个页面运行速度也很感人，优化之前用难听的话叫做垃圾SQL。纯SQL运行时间大概需要90s，经过几天的查资料和实验等等一番优化">
+<meta name="keywords" content="MySQL,SQL优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL优化小探">
+<meta property="og:url" content="http://blog.sunxinfei.com/2017/05/31/sql-optimize/index.html">
+<meta property="og:site_name" content="XinFei&#39;s Notes">
+<meta property="og:description" content="由于不是专业搞SQL优化的，可能会显得班门弄斧，请谅解。正在写AngualrJS的我，最近接到一个Task任务，是关于SQL优化的，这个SQL直接拿过来，有500多行，涉及十几个表，其中有五个表的数据最大，测试库的单表大概有几十万以上的数据，这个客户的数据库有400G以上。整个页面运行速度也很感人，优化之前用难听的话叫做垃圾SQL。纯SQL运行时间大概需要90s，经过几天的查资料和实验等等一番优化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://op3cmr9ix.bkt.clouddn.com/blog/sql-optimize/explain-sql.png">
+<meta property="og:updated_time" content="2018-03-23T08:10:37.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL优化小探">
+<meta name="twitter:description" content="由于不是专业搞SQL优化的，可能会显得班门弄斧，请谅解。正在写AngualrJS的我，最近接到一个Task任务，是关于SQL优化的，这个SQL直接拿过来，有500多行，涉及十几个表，其中有五个表的数据最大，测试库的单表大概有几十万以上的数据，这个客户的数据库有400G以上。整个页面运行速度也很感人，优化之前用难听的话叫做垃圾SQL。纯SQL运行时间大概需要90s，经过几天的查资料和实验等等一番优化">
+<meta name="twitter:image" content="http://op3cmr9ix.bkt.clouddn.com/blog/sql-optimize/explain-sql.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.sunxinfei.com/2017/05/31/sql-optimize/"/>
+
+
+
+
+
+  <title> SQL优化小探 | XinFei's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75240528-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0c185952c5af8f1598ad1fc0e2899a81";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XinFei's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-h5">
+          <a href="/H5" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            H5作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/Travel" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map"></i> <br />
+            
+            去过的地方
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.sunxinfei.com/2017/05/31/sql-optimize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XinFei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinFei's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                SQL优化小探
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T09:48:08+08:00">
+                2017-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/31/sql-optimize/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/31/sql-optimize/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/05/31/sql-optimize/" class="leancloud_visitors" data-flag-title="SQL优化小探">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于不是专业搞SQL优化的，可能会显得班门弄斧，请谅解。正在写AngualrJS的我，最近接到一个Task任务，是关于SQL优化的，这个SQL直接拿过来，有500多行，涉及十几个表，其中有五个表的数据最大，测试库的单表大概有几十万以上的数据，这个客户的数据库有400G以上。整个页面运行速度也很感人，优化之前用难听的话叫做垃圾SQL。纯SQL运行时间大概需要90s，经过几天的查资料和实验等等一番优化之后，所有SQL运行下来，控制在2秒左右。<br><a id="more"></a><br>Customers Table 177930 data. Stops Table 246710 data. Routes Table 20906 data.  Users Tabale 14w data. 还有一个invoice订单表就更大了，由于那个表不是关键因素，所以就不谈了。<br>具体SQL由于业务耦合度很高，并且将近500多行，容易看得人一头雾水，就不贴出来了，主要说下分析思路。拿到一个相对复杂的SQL，经验不足的特别容易慌张，感觉无从下手，应该怎么处理，尤其是对SQL并不是很了解的新人或前端(lll￢ω￢)：</p>
+<h3 id="explain-SQL"><a href="#explain-SQL" class="headerlink" title="explain SQL"></a>explain SQL</h3><p>使用方法很简单，只要在select语句之前加上explain就可以，主要显示表读取顺序，索引等系列的信息，对我们优化sql，很有帮助，主要显示的字段有:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">id</span><br><span class="line">select_type</span><br><span class="line">table</span><br><span class="line">type 这一列很重要，我单独拿出来说一下，表示表的链接方式，从好到差依次是1.system、2.const、3. eq_reg、4. ref、5. range、6.index、7. all(全表扫描)</span><br><span class="line">possible_keys</span><br><span class="line">key</span><br><span class="line">key_len</span><br><span class="line">ref</span><br><span class="line">rows Mysql会扫描多少行</span><br><span class="line">extra 查询的详细信息</span><br></pre></td></tr></table></figure>
+<p>其中我要优化的SQL解析中，如图<img src="http://op3cmr9ix.bkt.clouddn.com/blog/sql-optimize/explain-sql.png" alt="explain-sql">就出现了type=All的两条数据, 先给这些All的表创建索引。</p>
+<h3 id="给临时表创建索引"><a href="#给临时表创建索引" class="headerlink" title="给临时表创建索引"></a>给临时表创建索引</h3><p>索引就像一本书的目录，创建索引的标准为 where字句， order by字句， group by字句， inner join 字句出现的字段。</p>
+<h3 id="对大量的链接表进行拆分，并避免Left-Join"><a href="#对大量的链接表进行拆分，并避免Left-Join" class="headerlink" title="对大量的链接表进行拆分，并避免Left Join"></a>对大量的链接表进行拆分，并避免Left Join</h3><p>根据业务上的需求，就是需要查询哪些字段，如果可以拆分的，单独拆分出来，这里我将最后的主查询那里(涉及到Routes、Stops、Customers、Users)，拆分出来了两个大表（Users和Customers），将这两个大表查询的结果汇集成一个临时表，再添加到主查询中，依据是：单独拆出来，作为临时表，不影响之前的主查询逻辑。Left Join是效率非常差的，所以从业务上分析，如果需要才会使用的一个字段。</p>
+<h3 id="排除网络传输的干扰"><a href="#排除网络传输的干扰" class="headerlink" title="排除网络传输的干扰"></a>排除网络传输的干扰</h3><p>我在实际的优化过程中，使用的本地连接的测试服务器，有几次按照SQL语句分析是优化成功的，但是本地却跑出来的时间比优化之前更慢，结果我看了下mysql的运行结果发现，原来是传输的时间，当前网络环境不稳定导致的，干扰了我们优化，所以建议使用本地数据库，或者将优化的SQL在测试服务器上运行查看时间。</p>
+<h3 id="使用DataWareHouse"><a href="#使用DataWareHouse" class="headerlink" title="使用DataWareHouse"></a>使用DataWareHouse</h3><p>这个已经不属于个人的优化范围了，属于工作环境的范畴。简单来说DataWareHouse，大家都知道Mysql是关系数据库管理系统。DataWareHouse主要是分析数据，主要进行数据查询，从DataBase中提取数据，所以不是DataBase的拷贝，会有定时的任务进行数据刷新，由于没有深入研究，具体可以去网上查找资料，这里再提一句就是DataWareHouse的聚合函数执行特别快。</p>
+<h3 id="使用ReportHistory"><a href="#使用ReportHistory" class="headerlink" title="使用ReportHistory"></a>使用ReportHistory</h3><p>我们会有重复的SQL查询，尤其数据量大时占用数据库非常明显，然后说下ReportHistory，这是一个封装的方法，方法的参数是SQL的内容、过期时间。思路就是，我们创建临时表，将该SQL查询数据存放到物理临时表中，我们将SQL文本进行MD5编码之后，放置到一个表中（该表的结构是SQLMD5编码、SQL方法体、SQL结果物理临时表表名、过期时间）。如果我们找到MD5之后相同的，那么我们就直接拿到SQL的临时表表名，然后去读取数据库存放的临时表的结果即可。这个ReportHistory方法还可以结合刚才提到的DataWareHouse一起使用，也就是说开发者使用时，自己控制好想要的过期时间和是否使用DataWareHouse，然后SQL传入调用即可，</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p><1>创建索引的标准为 where字句 order by字句 group by字句 inner join 字句等 主，与where字句中的使用顺序无关</1></p>
+<p><2>Inner join替代子查询</2></p>
+<p><3>Insert 语句中Group By之后，要加上order by null，因为默认会排序</3></p>
+<p><4>INSERT 语句一定不要加order by 字段XXX</4></p>
+<p><5>如果确定关联不会产生重复值，不要使用GROUP BY去重</5></p>
+<p><6>尽量不使用NOT IN和&lt;&gt;操作和LIKE</6></p>
+<p><7>INNER JOIN + UPDATE 不一定比LEFT JOIN 快 ，这个是我在实际测试出来的结果，因为最后的Update又消耗了时间，原因可能是INNER Join和LEFT JOIN最后的结果集数量上是一样的。</7></p>
+<p><8>子查询不一定比创建临时表速度慢，<7><8>两种情况在网上优化教程中经常提起，但是我在试验中发现并非如此，所以我加上了“不一定”，这两条需要实际数据去测试执行时间。</8></7></8></p>
+<p><9>没用的字段不出现在SELECT后</9></p>
+<p><10>能卡掉大数据行的操作放到前面， Where子句中条件的顺序对性能没有影响</10></p>
+<p><11>Explain查看是否使用了索引，尤其是Type属性：是索引扫描还是全表扫描…，检查是否使用了合适的索引<br>不是特别专业的DBA，学习了一番，略显班门弄斧，敬请见谅。</11></p>
+</blockquote>
+<p>关于第七点我单独解释下，免得一些人可能会不清楚什么意思：<br>比如我们有一个A表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">exists</span> aTable;  </span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> aTable (aid <span class="built_in">varchar</span>(<span class="number">10</span>), aname <span class="built_in">varchar</span>(<span class="number">10</span>) );   </span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`aTable`</span> <span class="keyword">VALUES</span> (<span class="string">'A'</span>, <span class="string">'赵'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`aTable`</span> <span class="keyword">VALUES</span> (<span class="string">'B'</span>, <span class="string">'钱'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`aTable`</span> <span class="keyword">VALUES</span> (<span class="string">'C'</span>, <span class="string">'孙'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`aTable`</span> <span class="keyword">VALUES</span> (<span class="string">'D'</span>, <span class="string">'李'</span>);</span><br><span class="line">+<span class="comment">-----+-------+</span></span><br><span class="line">| aid | aname |</span><br><span class="line">+<span class="comment">-----+-------+</span></span><br><span class="line">| A   | 赵    |</span><br><span class="line">| B   | 钱    |</span><br><span class="line">| C   | 孙    |</span><br><span class="line">| D   | 李    |</span><br><span class="line">+<span class="comment">-----+-------+</span></span><br></pre></td></tr></table></figure>
+<p>还有一个B表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">exists</span> bTable;  </span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> bTable (bid <span class="built_in">varchar</span>(<span class="number">10</span>), bscore <span class="built_in">int</span> );   </span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`bTable`</span> <span class="keyword">VALUES</span> (<span class="string">'A'</span>, <span class="number">18</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`bTable`</span> <span class="keyword">VALUES</span> (<span class="string">'B'</span>, <span class="number">15</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`bTable`</span> <span class="keyword">VALUES</span> (<span class="string">'D'</span>, <span class="number">12</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`bTable`</span> <span class="keyword">VALUES</span> (<span class="string">'E'</span>, <span class="number">11</span>);</span><br><span class="line">+<span class="comment">-----+--------+</span></span><br><span class="line">| bid | bscore |</span><br><span class="line">+<span class="comment">-----+--------+</span></span><br><span class="line">| A   |     18 |</span><br><span class="line">| B   |     15 |</span><br><span class="line">| D   |     12 |</span><br><span class="line">| E   |     11 |</span><br><span class="line">+<span class="comment">-----+--------+</span></span><br></pre></td></tr></table></figure>
+<p>我们一般left Join的话就是：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">atable.aid,</span><br><span class="line">atable.aname,</span><br><span class="line">btable.bscore</span><br><span class="line"><span class="keyword">FROM</span> atable</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> btable <span class="keyword">ON</span> btable.bid=atable.aid;</span><br><span class="line">+<span class="comment">-----+-------+--------+</span></span><br><span class="line">| aid | aname | bscore |</span><br><span class="line">+<span class="comment">-----+-------+--------+</span></span><br><span class="line">| A   | 赵    |     18 |</span><br><span class="line">| B   | 钱    |     15 |</span><br><span class="line">| D   | 李    |     12 |</span><br><span class="line">| C   | 孙    | NULL   |</span><br><span class="line">+<span class="comment">-----+-------+--------+</span></span><br></pre></td></tr></table></figure>
+<p>这里当表的结构特别大的时候，我们先创建一个临时表tmpTable里面有aid，aname，bscore三个字段，然后使用INNER JOIN + UPDATE 可以得到同样的结果集：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ctable(</span><br><span class="line"><span class="string">`aid`</span> <span class="built_in">varchar</span>(<span class="number">10</span>) ,</span><br><span class="line"><span class="string">`aname`</span> <span class="built_in">varchar</span>(<span class="number">10</span>),</span><br><span class="line"><span class="string">`bscore`</span> <span class="built_in">int</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span>  </span><br><span class="line">ctable(aid,aname) </span><br><span class="line"><span class="keyword">Select</span> </span><br><span class="line">atable.aid, </span><br><span class="line">atable.aname </span><br><span class="line"><span class="keyword">from</span> atable;</span><br><span class="line">或者</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ctable(</span><br><span class="line"><span class="string">`aid`</span> <span class="built_in">varchar</span>(<span class="number">10</span>),</span><br><span class="line"><span class="string">`aname`</span> <span class="built_in">varchar</span>(<span class="number">10</span>),</span><br><span class="line"><span class="string">`bscore`</span> <span class="built_in">int</span>) <span class="keyword">AS</span> <span class="keyword">Select</span> </span><br><span class="line">atable.aid, </span><br><span class="line">atable.aname </span><br><span class="line"><span class="keyword">from</span> atable;</span><br></pre></td></tr></table></figure>
+<p>得到结果集：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-----+-------+--------+</span><br><span class="line">| aid | aname | bscore |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| A   | 赵    | NULL   |</span><br><span class="line">| B   | 钱    | NULL   |</span><br><span class="line">| C   | 孙    | NULL   |</span><br><span class="line">| D   | 李    | NULL   |</span><br><span class="line">+-----+-------+--------+</span><br></pre></td></tr></table></figure>
+<p>然后UPDATE + INNER JOIN</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> ctable</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> btable <span class="keyword">ON</span> btable.bid = ctable.aid</span><br><span class="line"><span class="keyword">SET</span> ctable.bscore = Btable.bscore</span><br><span class="line">;</span><br><span class="line"></span><br><span class="line">+<span class="comment">-----+-------+--------+</span></span><br><span class="line">| aid | aname | bscore |</span><br><span class="line">+<span class="comment">-----+-------+--------+</span></span><br><span class="line">| A   | 赵    |     18 |</span><br><span class="line">| B   | 钱    |     15 |</span><br><span class="line">| C   | 孙    | NULL   |</span><br><span class="line">| D   | 李    |     12 |</span><br><span class="line">+<span class="comment">-----+-------+--------+</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 感谢阅读------</div>
+<br/>
+<div>   
+  <ul class="post-copyright" style="border-left:3px solid #ff1700;list-style:none;margin:2em 0 0;padding:0.5em 1em;background-color:#f9f9f9">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      XinFei
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://blog.sunxinfei.com/2017/05/31/sql-optimize/" title="SQL优化小探">http://blog.sunxinfei.com/2017/05/31/sql-optimize/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>声明： </strong>
+      原创文章，有问题请评论中留言。支持友情链接。非商业转载请注明作者及出处。商业转载请联系作者本人。
+    </li>
+  </ul>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/wxzf.jpg" alt="XinFei WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/zfbzf.jpg" alt="XinFei Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/SQL优化/" rel="tag"># SQL优化</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/30/win10-cmd-popwindow/" rel="next" title="解决win10不定时弹窗问题">
+                <i class="fa fa-chevron-left"></i> 解决win10不定时弹窗问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/chrome-Tab-Search/" rel="prev" title="chrome地址栏百度搜索跳转百度首页">
+                chrome地址栏百度搜索跳转百度首页 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg"
+               alt="XinFei" />
+          <p class="site-author-name" itemprop="name">XinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/SunXinFei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:sunxinfei147@gmail.com" target="_blank" title="eMail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  eMail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#explain-SQL"><span class="nav-number">1.</span> <span class="nav-text">explain SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给临时表创建索引"><span class="nav-number">2.</span> <span class="nav-text">给临时表创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对大量的链接表进行拆分，并避免Left-Join"><span class="nav-number">3.</span> <span class="nav-text">对大量的链接表进行拆分，并避免Left Join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排除网络传输的干扰"><span class="nav-number">4.</span> <span class="nav-text">排除网络传输的干扰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用DataWareHouse"><span class="nav-number">5.</span> <span class="nav-text">使用DataWareHouse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用ReportHistory"><span class="nav-number">6.</span> <span class="nav-text">使用ReportHistory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XinFei</span>
+</div>
+
+
+<div class="powered-by">
+  支持游客评论
+</div>
+
+<div class="theme-info">
+  Notes
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 90243, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 90243, xid: "2017/05/31/sql-optimize/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/90243/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5nYphyQ98AHQaP6RnrI1yJkE-gzGzoHsz", "yM8MfCl0Wziz8f0eWWCfALzA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

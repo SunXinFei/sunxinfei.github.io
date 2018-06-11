@@ -1,0 +1,1480 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工具,静态博客," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XinFei's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://op3cmr9ix.bkt.clouddn.com/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="写静态博客的工具，我们选择Sublime，这个神器很多人都耳熟能详，不再多做介绍，不过值得一提的就是，Sublime本身对Markdown的语法不友好，需要我们配置一些东西。">
+<meta name="keywords" content="工具,静态博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sublime + Markdown">
+<meta property="og:url" content="http://blog.sunxinfei.com/2017/05/02/Sublime-Markdown/index.html">
+<meta property="og:site_name" content="XinFei&#39;s Notes">
+<meta property="og:description" content="写静态博客的工具，我们选择Sublime，这个神器很多人都耳熟能详，不再多做介绍，不过值得一提的就是，Sublime本身对Markdown的语法不友好，需要我们配置一些东西。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://op3cmr9ix.bkt.clouddn.com/blog/Sublime+Markdown/Sublime+Markdown6.png">
+<meta property="og:updated_time" content="2018-03-23T08:10:37.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sublime + Markdown">
+<meta name="twitter:description" content="写静态博客的工具，我们选择Sublime，这个神器很多人都耳熟能详，不再多做介绍，不过值得一提的就是，Sublime本身对Markdown的语法不友好，需要我们配置一些东西。">
+<meta name="twitter:image" content="http://op3cmr9ix.bkt.clouddn.com/blog/Sublime+Markdown/Sublime+Markdown6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.sunxinfei.com/2017/05/02/Sublime-Markdown/"/>
+
+
+
+
+
+  <title> Sublime + Markdown | XinFei's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75240528-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0c185952c5af8f1598ad1fc0e2899a81";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XinFei's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-h5">
+          <a href="/H5" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            H5作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/Travel" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map"></i> <br />
+            
+            去过的地方
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.sunxinfei.com/2017/05/02/Sublime-Markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XinFei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinFei's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Sublime + Markdown
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T21:37:10+08:00">
+                2017-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/02/Sublime-Markdown/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/02/Sublime-Markdown/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/05/02/Sublime-Markdown/" class="leancloud_visitors" data-flag-title="Sublime + Markdown">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>写静态博客的工具，我们选择Sublime，这个神器很多人都耳熟能详，不再多做介绍，不过值得一提的就是，Sublime本身对Markdown的语法不友好，需要我们配置一些东西。<br><a id="more"></a><br><a href="http://www.sublimetext.com/3" target="_blank" rel="noopener"><em>Sublime</em></a>：根据系统下载并安装自己需要的版本，这里值得一提的就是，安装过程中记得勾选一项是关于将Sublime添加到右键菜单的。  </p>
+<h3 id="安装Package-Control"><a href="#安装Package-Control" class="headerlink" title="安装Package Control"></a>安装Package Control</h3><p>我们通过Sublime的包管理器Package Control来给Sublime安装插件。</p>
+<blockquote>
+<ul>
+<li>Ctrl + Shift + P调出命令面板，输入”Package”，选择”<strong>Install Package Control</strong>“</li>
+<li>等待一段时间之后会看到安装成功的提示框  </li>
+</ul>
+</blockquote>
+<p><strong>以后需要注意，如果插件安装成功后，没有任何变化，记得重启下Sublime</strong></p>
+<h3 id="安装Monokai-Extended-和-Markdown-Extended插件"><a href="#安装Monokai-Extended-和-Markdown-Extended插件" class="headerlink" title="安装Monokai Extended 和 Markdown Extended插件"></a>安装Monokai Extended 和 Markdown Extended插件</h3><p>由于Markdown 格式在 Sublime 中默认无高亮，所以我们为了美观…</p>
+<blockquote>
+<ul>
+<li>Ctrl+ Shift + P 调出命令面板，输入 “install”，选择”<strong>Package Control: Install Package</strong>“回车，等待弹出输入框，输入插件名称、回车，等待安装，。  </li>
+<li>我们安装好Monokai Extended 和 Markdown Extended两个插件之后，选择Monokai Extended的主题 <strong>菜单Preferences - Color Scheme - Monokai Extended - Monokai Extended Bright</strong>  </li>
+<li>打开一个md结尾的文件，点击 Sublime 右下角文档格式，在列表最上方名为<strong> Open all with current extension as</strong> 二级列表中选择 <strong>Markdown Extended</strong>，这样我们就把Markdown 的文件格式与 Markdown Extended 这种语法关联起来</li>
+<li>到此我们的编辑器就变得有颜色了</li>
+<li><img src="http://op3cmr9ix.bkt.clouddn.com/blog/Sublime+Markdown/Sublime+Markdown6.png" alt="Markdown Color">  </li>
+</ul>
+</blockquote>
+<h3 id="安装OmniMarkupPreviewer"><a href="#安装OmniMarkupPreviewer" class="headerlink" title="安装OmniMarkupPreviewer"></a>安装OmniMarkupPreviewer</h3><p>这个插件主要是实现了<strong>实时预览</strong>你的Markdown页面，安装方法跟一般的插件一样，安装成功后，打开一个md的文件，右击或者Ctrl + Alt + O，就能弹出实时预览的页面。</p>
+<h3 id="安装MarkdownEditing"><a href="#安装MarkdownEditing" class="headerlink" title="安装MarkdownEditing"></a>安装MarkdownEditing</h3><p>这个插件看个人需求，<a href="https://github.com/SublimeText-Markdown/MarkdownEditing" target="_blank" rel="noopener"><em>Markdown Editing</em></a>主要是方便输入一些MarkDown特定的语法，比如自动补齐语法符号和语法快捷键，它也提供配色方案（惨白色，非常不推荐）<br>常用的几个快捷键是：</p>
+<blockquote>
+<ul>
+<li>Ctrl + Win + V 创建文本超级链接格式</li>
+<li>Shift + Win + K 创建图片链接格式</li>
+</ul>
+</blockquote>
+<p><strong>这里需要注意一点的是，如果安装了MarkdownEditing，md文件主题变成惨白色，这时在菜单Preferences修改主题配色是没有作用的，我们需要手动点击 Sublime 右下角文档格式，选择Markdown Extended，这样就能修正过来颜色搭配。</strong></p>
+<h3 id="关于语言和缩写标记对应表"><a href="#关于语言和缩写标记对应表" class="headerlink" title="关于语言和缩写标记对应表"></a>关于语言和缩写标记对应表</h3><table>
+<thead>
+<tr>
+<th>Language</th>
+<th style="text-align:center">language_key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1C</td>
+<td style="text-align:center">1c</td>
+</tr>
+<tr>
+<td>ActionScript</td>
+<td style="text-align:center">actionscript</td>
+</tr>
+<tr>
+<td>Apache</td>
+<td style="text-align:center">apache</td>
+</tr>
+<tr>
+<td>AppleScript a</td>
+<td style="text-align:center">pplescript</td>
+</tr>
+<tr>
+<td>AsciiDoc</td>
+<td style="text-align:center">asciidoc</td>
+</tr>
+<tr>
+<td>AspectJ</td>
+<td style="text-align:center">asciidoc</td>
+</tr>
+<tr>
+<td>AutoHotkey</td>
+<td style="text-align:center">autohotkey</td>
+</tr>
+<tr>
+<td>AVR Assembler</td>
+<td style="text-align:center">avrasm</td>
+</tr>
+<tr>
+<td>Axapta</td>
+<td style="text-align:center">axapta</td>
+</tr>
+<tr>
+<td>Bash</td>
+<td style="text-align:center">bash</td>
+</tr>
+<tr>
+<td>BrainFuck</td>
+<td style="text-align:center">brainfuck</td>
+</tr>
+<tr>
+<td>Cap’n Proto</td>
+<td style="text-align:center">capnproto</td>
+</tr>
+<tr>
+<td>Clojure REPL</td>
+<td style="text-align:center">clojure</td>
+</tr>
+<tr>
+<td>Clojure</td>
+<td style="text-align:center">clojure</td>
+</tr>
+<tr>
+<td>CMake</td>
+<td style="text-align:center">cmake</td>
+</tr>
+<tr>
+<td>CoffeeScript</td>
+<td style="text-align:center">coffeescript</td>
+</tr>
+<tr>
+<td>C++</td>
+<td style="text-align:center">cpp</td>
+</tr>
+<tr>
+<td>C# c</td>
+<td style="text-align:center">s</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td style="text-align:center">css</td>
+</tr>
+<tr>
+<td>D</td>
+<td style="text-align:center">d</td>
+</tr>
+<tr>
+<td>Dart</td>
+<td style="text-align:center">d</td>
+</tr>
+<tr>
+<td>Delphi</td>
+<td style="text-align:center">delphi</td>
+</tr>
+<tr>
+<td>Diff</td>
+<td style="text-align:center">diff</td>
+</tr>
+<tr>
+<td>Django</td>
+<td style="text-align:center">django</td>
+</tr>
+<tr>
+<td>DOS .bat</td>
+<td style="text-align:center">dos</td>
+</tr>
+<tr>
+<td>Dust</td>
+<td style="text-align:center">dust</td>
+</tr>
+<tr>
+<td>Elixir</td>
+<td style="text-align:center">elixir</td>
+</tr>
+<tr>
+<td>ERB (Embedded Ruby)</td>
+<td style="text-align:center">erb</td>
+</tr>
+<tr>
+<td>Erlang REPL    erlang-</td>
+<td style="text-align:center">repl</td>
+</tr>
+<tr>
+<td>Erlang</td>
+<td style="text-align:center">erlang</td>
+</tr>
+<tr>
+<td>FIX</td>
+<td style="text-align:center">fix</td>
+</tr>
+<tr>
+<td>F#</td>
+<td style="text-align:center">fsharp</td>
+</tr>
+<tr>
+<td>G-code (ISO 6983)</td>
+<td style="text-align:center">gcode</td>
+</tr>
+<tr>
+<td>Gherkin</td>
+<td style="text-align:center">gherkin</td>
+</tr>
+<tr>
+<td>GLSL</td>
+<td style="text-align:center">glsl</td>
+</tr>
+<tr>
+<td>Go</td>
+<td style="text-align:center">go</td>
+</tr>
+<tr>
+<td>Gradle</td>
+<td style="text-align:center">gradle</td>
+</tr>
+<tr>
+<td>Groovy</td>
+<td style="text-align:center">groovy</td>
+</tr>
+<tr>
+<td>Haml</td>
+<td style="text-align:center">haml</td>
+</tr>
+<tr>
+<td>Handlebars</td>
+<td style="text-align:center">handlebars</td>
+</tr>
+<tr>
+<td>Haskell</td>
+<td style="text-align:center">haskell</td>
+</tr>
+<tr>
+<td>Haxe</td>
+<td style="text-align:center">haxe</td>
+</tr>
+<tr>
+<td>HTTP</td>
+<td style="text-align:center">http</td>
+</tr>
+<tr>
+<td>Ini file</td>
+<td style="text-align:center">ini</td>
+</tr>
+<tr>
+<td>Java</td>
+<td style="text-align:center">java</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td style="text-align:center">javascript</td>
+</tr>
+<tr>
+<td>JSON j</td>
+<td style="text-align:center">son</td>
+</tr>
+<tr>
+<td>Lasso</td>
+<td style="text-align:center">lasso</td>
+</tr>
+<tr>
+<td>Less</td>
+<td style="text-align:center">less</td>
+</tr>
+<tr>
+<td>Lisp</td>
+<td style="text-align:center">lisp</td>
+</tr>
+<tr>
+<td>LiveCode</td>
+<td style="text-align:center">livecodeserver</td>
+</tr>
+<tr>
+<td>LiveScript</td>
+<td style="text-align:center">livescript</td>
+</tr>
+<tr>
+<td>Lua</td>
+<td style="text-align:center">lua</td>
+</tr>
+<tr>
+<td>Makefile</td>
+<td style="text-align:center">makefile</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td style="text-align:center">markdown</td>
+</tr>
+<tr>
+<td>Mathematica</td>
+<td style="text-align:center">mathematica</td>
+</tr>
+<tr>
+<td>Matlab</td>
+<td style="text-align:center">matlab</td>
+</tr>
+<tr>
+<td>MEL (Maya Embedded Language)</td>
+<td style="text-align:center">mel</td>
+</tr>
+<tr>
+<td>Mercury</td>
+<td style="text-align:center">mercury</td>
+</tr>
+<tr>
+<td>Mizar</td>
+<td style="text-align:center">mizar</td>
+</tr>
+<tr>
+<td>Monkey</td>
+<td style="text-align:center">monkey</td>
+</tr>
+<tr>
+<td>nginx</td>
+<td style="text-align:center">nginx</td>
+</tr>
+<tr>
+<td>Nimrod</td>
+<td style="text-align:center">nimrod</td>
+</tr>
+<tr>
+<td>Nix</td>
+<td style="text-align:center">nix</td>
+</tr>
+<tr>
+<td>NSIS</td>
+<td style="text-align:center">nsis</td>
+</tr>
+<tr>
+<td>Objective C</td>
+<td style="text-align:center">objectivec</td>
+</tr>
+<tr>
+<td>OCaml</td>
+<td style="text-align:center">ocaml</td>
+</tr>
+<tr>
+<td>Oxygene</td>
+<td style="text-align:center">oxygene</td>
+</tr>
+<tr>
+<td>Parser 3</td>
+<td style="text-align:center">parser3</td>
+</tr>
+<tr>
+<td>Perl</td>
+<td style="text-align:center">perl</td>
+</tr>
+<tr>
+<td>PHP</td>
+<td style="text-align:center">php</td>
+</tr>
+<tr>
+<td>PowerShell</td>
+<td style="text-align:center">powershell</td>
+</tr>
+<tr>
+<td>Processing</td>
+<td style="text-align:center">processing</td>
+</tr>
+<tr>
+<td>Python’s profiler output</td>
+<td style="text-align:center">profile</td>
+</tr>
+<tr>
+<td>Protocol Buffers</td>
+<td style="text-align:center">protobuf</td>
+</tr>
+<tr>
+<td>Puppet</td>
+<td style="text-align:center">puppet</td>
+</tr>
+<tr>
+<td>Python</td>
+<td style="text-align:center">python</td>
+</tr>
+<tr>
+<td>Q</td>
+<td style="text-align:center">q</td>
+</tr>
+<tr>
+<td>R</td>
+<td style="text-align:center">r</td>
+</tr>
+<tr>
+<td>RenderMan RIB</td>
+<td style="text-align:center">rib</td>
+</tr>
+<tr>
+<td>Roboconf</td>
+<td style="text-align:center">roboconf</td>
+</tr>
+<tr>
+<td>RenderMan RSL</td>
+<td style="text-align:center">rsl</td>
+</tr>
+<tr>
+<td>Ruby</td>
+<td style="text-align:center">ruby</td>
+</tr>
+<tr>
+<td>Oracle Rules Language</td>
+<td style="text-align:center">ruleslanguage</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td style="text-align:center">rust</td>
+</tr>
+<tr>
+<td>Scala</td>
+<td style="text-align:center">scala</td>
+</tr>
+<tr>
+<td>Scheme</td>
+<td style="text-align:center">scheme</td>
+</tr>
+<tr>
+<td>Scilab</td>
+<td style="text-align:center">scilab</td>
+</tr>
+<tr>
+<td>SCSS</td>
+<td style="text-align:center">scss</td>
+</tr>
+<tr>
+<td>Smali</td>
+<td style="text-align:center">smali</td>
+</tr>
+<tr>
+<td>SmallTalk</td>
+<td style="text-align:center">smalltalk</td>
+</tr>
+<tr>
+<td>SML</td>
+<td style="text-align:center">sml</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td style="text-align:center">sql</td>
+</tr>
+<tr>
+<td>Stata</td>
+<td style="text-align:center">stata</td>
+</tr>
+<tr>
+<td>STEP Part 21 (ISO 10303-21)</td>
+<td style="text-align:center">step21</td>
+</tr>
+<tr>
+<td>Stylus</td>
+<td style="text-align:center">stylus</td>
+</tr>
+<tr>
+<td>Swift</td>
+<td style="text-align:center">swift</td>
+</tr>
+<tr>
+<td>Tcl</td>
+<td style="text-align:center">tcl</td>
+</tr>
+<tr>
+<td>TeX</td>
+<td style="text-align:center">tex</td>
+</tr>
+<tr>
+<td>Thrift</td>
+<td style="text-align:center">thrift</td>
+</tr>
+<tr>
+<td>Twig</td>
+<td style="text-align:center">twig</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td style="text-align:center">typescript</td>
+</tr>
+<tr>
+<td>Vala</td>
+<td style="text-align:center">vala</td>
+</tr>
+<tr>
+<td>VB.NET</td>
+<td style="text-align:center">vbnet</td>
+</tr>
+<tr>
+<td>VBScript in HTML    vbscript-</td>
+<td style="text-align:center">html</td>
+</tr>
+<tr>
+<td>VBScript</td>
+<td style="text-align:center">vbscript</td>
+</tr>
+<tr>
+<td>Verilog</td>
+<td style="text-align:center">verilog</td>
+</tr>
+<tr>
+<td>VHDL</td>
+<td style="text-align:center">vhdl</td>
+</tr>
+<tr>
+<td>Vim Script</td>
+<td style="text-align:center">vim</td>
+</tr>
+<tr>
+<td>Intel x86 Assembly</td>
+<td style="text-align:center">x86asm</td>
+</tr>
+<tr>
+<td>XL</td>
+<td style="text-align:center">xl</td>
+</tr>
+<tr>
+<td>XML, HTML</td>
+<td style="text-align:center">xml</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 感谢阅读------</div>
+<br/>
+<div>   
+  <ul class="post-copyright" style="border-left:3px solid #ff1700;list-style:none;margin:2em 0 0;padding:0.5em 1em;background-color:#f9f9f9">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      XinFei
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://blog.sunxinfei.com/2017/05/02/Sublime-Markdown/" title="Sublime + Markdown">http://blog.sunxinfei.com/2017/05/02/Sublime-Markdown/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>声明： </strong>
+      原创文章，有问题请评论中留言。支持友情链接。非商业转载请注明作者及出处。商业转载请联系作者本人。
+    </li>
+  </ul>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/wxzf.jpg" alt="XinFei WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/zfbzf.jpg" alt="XinFei Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag"># 工具</a>
+          
+            <a href="/tags/静态博客/" rel="tag"># 静态博客</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/30/科学上网工具/" rel="next" title="科学上网工具">
+                <i class="fa fa-chevron-left"></i> 科学上网工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/03/安装Next主题/" rel="prev" title="安装Next主题">
+                安装Next主题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg"
+               alt="XinFei" />
+          <p class="site-author-name" itemprop="name">XinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/SunXinFei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:sunxinfei147@gmail.com" target="_blank" title="eMail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  eMail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Package-Control"><span class="nav-number">1.</span> <span class="nav-text">安装Package Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Monokai-Extended-和-Markdown-Extended插件"><span class="nav-number">2.</span> <span class="nav-text">安装Monokai Extended 和 Markdown Extended插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装OmniMarkupPreviewer"><span class="nav-number">3.</span> <span class="nav-text">安装OmniMarkupPreviewer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装MarkdownEditing"><span class="nav-number">4.</span> <span class="nav-text">安装MarkdownEditing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于语言和缩写标记对应表"><span class="nav-number">5.</span> <span class="nav-text">关于语言和缩写标记对应表</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XinFei</span>
+</div>
+
+
+<div class="powered-by">
+  支持游客评论
+</div>
+
+<div class="theme-info">
+  Notes
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 90243, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 90243, xid: "2017/05/02/Sublime-Markdown/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/90243/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5nYphyQ98AHQaP6RnrI1yJkE-gzGzoHsz", "yM8MfCl0Wziz8f0eWWCfALzA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

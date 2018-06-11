@@ -1,0 +1,1007 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SEO,Github,CDN," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XinFei's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://op3cmr9ix.bkt.clouddn.com/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="像Github这一类的禁止了百度爬虫，具体原因可以去搜索，所以即使你将你的博客网址加入了百度站长，提交百度站点地图，也是报抓取失败，这里有两种方法补救。">
+<meta name="keywords" content="SEO,Github,CDN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让百度收录Github中的博客（第三方托管和CDN加速）">
+<meta property="og:url" content="http://blog.sunxinfei.com/2017/05/06/让百度收录Github中的博客/index.html">
+<meta property="og:site_name" content="XinFei&#39;s Notes">
+<meta property="og:description" content="像Github这一类的禁止了百度爬虫，具体原因可以去搜索，所以即使你将你的博客网址加入了百度站长，提交百度站点地图，也是报抓取失败，这里有两种方法补救。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T08:10:37.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="让百度收录Github中的博客（第三方托管和CDN加速）">
+<meta name="twitter:description" content="像Github这一类的禁止了百度爬虫，具体原因可以去搜索，所以即使你将你的博客网址加入了百度站长，提交百度站点地图，也是报抓取失败，这里有两种方法补救。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.sunxinfei.com/2017/05/06/让百度收录Github中的博客/"/>
+
+
+
+
+
+  <title> 让百度收录Github中的博客（第三方托管和CDN加速） | XinFei's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75240528-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0c185952c5af8f1598ad1fc0e2899a81";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XinFei's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-h5">
+          <a href="/H5" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            H5作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/Travel" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map"></i> <br />
+            
+            去过的地方
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.sunxinfei.com/2017/05/06/让百度收录Github中的博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XinFei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinFei's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                让百度收录Github中的博客（第三方托管和CDN加速）
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-06T11:09:48+08:00">
+                2017-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/06/让百度收录Github中的博客/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/06/让百度收录Github中的博客/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/05/06/让百度收录Github中的博客/" class="leancloud_visitors" data-flag-title="让百度收录Github中的博客（第三方托管和CDN加速）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>像Github这一类的禁止了百度爬虫，具体原因可以去搜索，所以即使你将你的博客网址加入了百度站长，提交百度站点地图，也是报抓取失败，这里有两种方法补救。<br><a id="more"></a></p>
+<h3 id="第三方托管"><a href="#第三方托管" class="headerlink" title="第三方托管"></a>第三方托管</h3><p>也就是说我们同时提交到Github和第三方的平台，我选择的是<a href="https://coding.net" target="_blank" rel="noopener">Coding</a>。<br>这里我们和Github使用一样，_config.yml配置文件提交代码那里修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">- type: git</span><br><span class="line">  repo: https://github.com/SunXinFei/sunxinfei.github.io.git</span><br><span class="line">  branch: master</span><br><span class="line">- type: git</span><br><span class="line">  repo: https://git.coding.net/sunxinfei/sunxinfei.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<h4 id="开启Pages服务"><a href="#开启Pages服务" class="headerlink" title="开启Pages服务"></a>开启Pages服务</h4><p>然后我们点击我们coding项目中的<strong>Pages服务</strong></p>
+<blockquote>
+<p>1.开启Coding Pages服务<br>2.自定义域名那里我们绑定我们的域名blog.sunxinfei.com<br>我们需要设置一个自己的域名给coding（需要白银会员权限），不然的话，依旧不会被百度爬到，这个划重点，也就是你最后给CNAME设置的时候不能用xxx.coding.me。</p>
+</blockquote>
+<h4 id="域名解析修改配置"><a href="#域名解析修改配置" class="headerlink" title="域名解析修改配置"></a>域名解析修改配置</h4><p>我们打开域名的解析服务，增加一条CNAME记录，也就是我们将国内项目（或者将搜索引擎，或者单独给百度）分配Coding的网址，非百度的分配github（或者CDN）这样可以顺利解决百度蜘蛛爬不到githubPage的问题。</p>
+<h4 id="弊端"><a href="#弊端" class="headerlink" title="弊端"></a>弊端</h4><p>Coding如果免费的，需要先跳转到他的首页，再跳转到你的博客页，这样对用户和SEO都非常不友好，百度的站长工具，抓取测试一下会发现，工具的状态是抓取成功 (有跳转)，所以建议域名解析设置时候，如果支持的话，单独将百度搜索引擎指向Coding，其他设置成GitHub，这种方法是有效的。</p>
+<h3 id="使用CDN加速服务"><a href="#使用CDN加速服务" class="headerlink" title="使用CDN加速服务"></a>使用CDN加速服务</h3><p>这里我发现的是CDN并不能根本解决百度这个问题，CDN倒是可以解决国内访问Github博客慢的问题。顺带吐槽一下备案的速度。</p>
+<h4 id="CDN加速原理"><a href="#CDN加速原理" class="headerlink" title="CDN加速原理"></a>CDN加速原理</h4><p>原理说简单点就是：不是去原服务器上获取数据，而是从CDN加速商给你分配的，一般是最近的服务器上跑流量，这样就是说是静态页面，而Github上的博客是静态页，所以比较符合CDN加速的情况。</p>
+<h4 id="验证CDN是否生效"><a href="#验证CDN是否生效" class="headerlink" title="验证CDN是否生效"></a>验证CDN是否生效</h4><p>CDN配置好之后，服务商会给一个CNAME让我们去解析，这里注意所给的CNAME域名是不能直接访问的，这里不同的DNS服务商，CNAME生效的时间略有不同，一般会在半个小时之内生效。您也可以通过PING的方式来查询是CNAME是否生效，如果PING到后缀为xxxcdntip.com的域名表示CDN的CNAME生效。</p>
+<h4 id="弊端-1"><a href="#弊端-1" class="headerlink" title="弊端"></a>弊端</h4><p>对于用户来说弊端就是如果更新速度不够，很有可能看到旧的页面，当然你可以在CDN加速配置界面去自己配置刷新数据时间。对于百度蜘蛛来说，CDN出现不同IP，也就是说不但不会起到SEO，反而可能会降权或者收录索引减少，所以这里比如腾讯云的CDN加速有个高级设置选项，<strong>SEO优化配置</strong>是为了自定义搜索引擎回源，大致意思是当蜘蛛过来爬虫的时候，CDN将它引向你设置的源地址，这样就保证了IP的稳定性。详情见这个<a href="https://www.qcloud.com/document/product/228/6297" target="_blank" rel="noopener"><em>CDN的SEO优化配置</em></a>。<br>关于CDN对百度蜘蛛的影响与否，我找到了具体的官方解读，可以了解下<a href="http://zhanzhang.baidu.com/college/articleinfo?id=884" target="_blank" rel="noopener"><em>【官方解读】CDN对网站在搜索引擎中的影响</em></a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>到目前为止，主流的网上教程让百度收录Github中的项目的方法就是这两种，Github在今后很长一段时间都会屏蔽百度爬虫，所以既不想丢掉Github又想在百度排名里面不丢，就可以尝试这两种方法。我最后使用的是在域名解析那里给百度设置的Coding的网址，给默认设置的CDN网址，这样百度蜘蛛过来的话就去爬虫coding上的项目，但是注意这里会有个coding的跳转页面，其他用户访问的话就是CDN加速网址。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 感谢阅读------</div>
+<br/>
+<div>   
+  <ul class="post-copyright" style="border-left:3px solid #ff1700;list-style:none;margin:2em 0 0;padding:0.5em 1em;background-color:#f9f9f9">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      XinFei
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://blog.sunxinfei.com/2017/05/06/让百度收录Github中的博客/" title="让百度收录Github中的博客（第三方托管和CDN加速）">http://blog.sunxinfei.com/2017/05/06/让百度收录Github中的博客/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>声明： </strong>
+      原创文章，有问题请评论中留言。支持友情链接。非商业转载请注明作者及出处。商业转载请联系作者本人。
+    </li>
+  </ul>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/wxzf.jpg" alt="XinFei WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/zfbzf.jpg" alt="XinFei Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SEO/" rel="tag"># SEO</a>
+          
+            <a href="/tags/Github/" rel="tag"># Github</a>
+          
+            <a href="/tags/CDN/" rel="tag"># CDN</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/04/Hexo-SEO/" rel="next" title="Blog + SEO">
+                <i class="fa fa-chevron-left"></i> Blog + SEO
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/06/使用Git备份Hexo工程文件/" rel="prev" title="使用Git备份博客工程文件">
+                使用Git备份博客工程文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg"
+               alt="XinFei" />
+          <p class="site-author-name" itemprop="name">XinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/SunXinFei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:sunxinfei147@gmail.com" target="_blank" title="eMail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  eMail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方托管"><span class="nav-number">1.</span> <span class="nav-text">第三方托管</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开启Pages服务"><span class="nav-number">1.1.</span> <span class="nav-text">开启Pages服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域名解析修改配置"><span class="nav-number">1.2.</span> <span class="nav-text">域名解析修改配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弊端"><span class="nav-number">1.3.</span> <span class="nav-text">弊端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CDN加速服务"><span class="nav-number">2.</span> <span class="nav-text">使用CDN加速服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CDN加速原理"><span class="nav-number">2.1.</span> <span class="nav-text">CDN加速原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#验证CDN是否生效"><span class="nav-number">2.2.</span> <span class="nav-text">验证CDN是否生效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弊端-1"><span class="nav-number">2.3.</span> <span class="nav-text">弊端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XinFei</span>
+</div>
+
+
+<div class="powered-by">
+  支持游客评论
+</div>
+
+<div class="theme-info">
+  Notes
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 90243, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 90243, xid: "2017/05/06/让百度收录Github中的博客/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/90243/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5nYphyQ98AHQaP6RnrI1yJkE-gzGzoHsz", "yM8MfCl0Wziz8f0eWWCfALzA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

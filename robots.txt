@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /tags/
+Allow: /categories/
+Allow: /H5/
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /lib/
+Disallow: /images/
+
+Sitemap: http://blog.sunxinfei.com/sitemap.xml
+Sitemap: http://blog.sunxinfei.com/baidusitemap.xml

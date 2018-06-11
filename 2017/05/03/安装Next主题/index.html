@@ -1,0 +1,1075 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo,Next,静态博客," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XinFei's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://op3cmr9ix.bkt.clouddn.com/blog/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="2017最新Hexo + 最新的版本Next5.0按照官方链接中的，从开始使用到常见问题，可以非常简单地实现所有基本的功能。这里主要说一些注意点。">
+<meta name="keywords" content="Hexo,Next,静态博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装Next主题">
+<meta property="og:url" content="http://blog.sunxinfei.com/2017/05/03/安装Next主题/index.html">
+<meta property="og:site_name" content="XinFei&#39;s Notes">
+<meta property="og:description" content="2017最新Hexo + 最新的版本Next5.0按照官方链接中的，从开始使用到常见问题，可以非常简单地实现所有基本的功能。这里主要说一些注意点。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T08:10:37.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装Next主题">
+<meta name="twitter:description" content="2017最新Hexo + 最新的版本Next5.0按照官方链接中的，从开始使用到常见问题，可以非常简单地实现所有基本的功能。这里主要说一些注意点。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.sunxinfei.com/2017/05/03/安装Next主题/"/>
+
+
+
+
+
+  <title> 安装Next主题 | XinFei's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-75240528-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0c185952c5af8f1598ad1fc0e2899a81";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XinFei's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-h5">
+          <a href="/H5" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-html5"></i> <br />
+            
+            H5作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/Travel" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map"></i> <br />
+            
+            去过的地方
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.sunxinfei.com/2017/05/03/安装Next主题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XinFei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XinFei's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                安装Next主题
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-03T21:57:48+08:00">
+                2017-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/03/安装Next主题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/03/安装Next主题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/05/03/安装Next主题/" class="leancloud_visitors" data-flag-title="安装Next主题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2017最新Hexo + 最新的版本<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener"><em>Next5.0</em></a>按照官方链接中的，从<strong>开始使用</strong>到<strong>常见问题</strong>，可以非常简单地实现所有基本的功能。这里主要说一些注意点。<br><a id="more"></a><br>我们首先按照官方的步骤实现Next主题的部署，这个很简单，不再赘述。</p>
+<h3 id="关于-config-yml主题配置文件"><a href="#关于-config-yml主题配置文件" class="headerlink" title="关于_config.yml主题配置文件"></a>关于_config.yml主题配置文件</h3><blockquote>
+<ul>
+<li>这个新手容易把之前提的<strong>站点配置文件</strong>（根目录下）和<strong>主题配置文件</strong>（主题目录下themes\next），这俩搞混。另外landscape里的那个_config.yml文件不用动。</li>
+<li>有时候我们修改站点配置文件和主题配置文件，发现不起作用，尝试<strong>关闭服务，重新hexo s一下</strong>。</li>
+</ul>
+</blockquote>
+<h3 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a><a href="http://theme-next.iissnan.com/third-party-services.html#comment-system" target="_blank" rel="noopener"><em>添加评论系统</em></a></h3><blockquote>
+<ul>
+<li>对于评论系统来说，匿名评论功能其实也很重要，这里我尝试了主题推荐的几款：DISQUS、HyperComments、网易云跟帖、来必力、畅言，下面我就简单点评下</li>
+<li><a href="https://disqus.com/" target="_blank" rel="noopener">DISQUS</a> 这个是国外很火的评论系统，可以匿名，缺点：被墙挡着，影响网页加载速度。</li>
+<li><a href="https://www.hypercomments.com/" target="_blank" rel="noopener">HyperComments</a> 我安装的这个，可以匿名，颜值高，缺点：登陆没有国内社交软件</li>
+<li><a href="https://gentie.163.com/experience.html" target="_blank" rel="noopener"><em>网易云跟帖</em></a>、<a href="http://changyan.kuaizhan.com/static/help/" target="_blank" rel="noopener"><em>畅言</em></a> 这两个类似，具体样式可以去官网体验 缺点：不能匿名，样式老感觉是在看新闻下的评论</li>
+<li><a href="https://livere.com/city-demo" target="_blank" rel="noopener">来必力</a> 这个相比前两个国外的和国内的比，优点在于本土化的很出色，社交媒体支持多 缺点：技术无国界，但是纯属担心以后会被拦住，匿名有限制</li>
+<li>多说已经停了，替换方案就是如上几个评论系统。</li>
+<li><strong>所以综上所述，面向国内国外交流的话，HyperComments和来必力是比较不错的选择，如果不追求匿名评论功能可以选择网易云跟帖和畅言</strong></li>
+<li>关于配置HyperComments，这里需要我们在HyperComments的<strong>管理台 - Setting - WIDGET - CODE</strong>,这里我们拿到页面中的ID（五位数字，字体非常小，）或者URL中最后几位也是ID</li>
+<li>关于开启HyperComments的匿名功能，这里需要我们在HyperComments的<strong>管理台 - Setting - WIDGET - GENERAL</strong>，这里我们勾选<strong>Allows to hide comments left on the website in the users’ profiles.</strong></li>
+<li>如果哪一个页面不想加评论系统，则在该md文件中的开始页头加入comments: false。</li>
+</ul>
+</blockquote>
+<h3 id="添加「标签」和「分类」页面"><a href="#添加「标签」和「分类」页面" class="headerlink" title="添加「标签」和「分类」页面"></a><a href="http://theme-next.iissnan.com/theme-settings.html#tags-page" target="_blank" rel="noopener"><em>添加「标签」和「分类」页面</em></a></h3><blockquote>
+<ul>
+<li>如果不进行这个操作，就会出现主题中点击首页的标签或者分类会出现<strong>Cannot GET /categories/</strong>或者<strong>Cannot GET /tags/</strong>这样的空白页面，导致<strong>hexo 下的分类和表签无法显示</strong></li>
+<li>这里还需要注意的是单词一定不要拼写错误</li>
+</ul>
+</blockquote>
+<h3 id="添加数据统计"><a href="#添加数据统计" class="headerlink" title="添加数据统计"></a><a href="http://theme-next.iissnan.com/third-party-services.html#analytics-system" target="_blank" rel="noopener"><em>添加数据统计</em></a></h3><blockquote>
+<ul>
+<li>我添加了Google分析，但是考虑到大部分可能不会<a href="http://blog.sunxinfei.com/2017/04/30/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%B7%A5%E5%85%B7/"><em>科学上网</em></a>，所以我又添加了百度统计</li>
+</ul>
+</blockquote>
+<h3 id="添加阅读次数统计（LeanCloud"><a href="#添加阅读次数统计（LeanCloud" class="headerlink" title="添加阅读次数统计（LeanCloud)"></a><a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="noopener"><em>添加阅读次数统计（LeanCloud)</em></a></h3><blockquote>
+<ul>
+<li>这个功能就可以实现首页和每个文章页的阅读次数显示。</li>
+<li>这里说下不蒜子统计，这个可以实现首页显示出眼睛和小人的图标来表示游客访问数，以及文章的阅读次数。</li>
+</ul>
+</blockquote>
+<h3 id="标签-分类数量统计不准确"><a href="#标签-分类数量统计不准确" class="headerlink" title="标签/分类数量统计不准确"></a><a href="http://theme-next.iissnan.com/faqs.html#count-incorrect-for-tags-categories" target="_blank" rel="noopener"><em>标签/分类数量统计不准确</em></a></h3><blockquote>
+<ul>
+<li>如果我们出现了统计标签等数量不正确的时候，按照链接中的步骤操作，可以清除缓存</li>
+</ul>
+</blockquote>
+<h3 id="修改Next主题的页脚"><a href="#修改Next主题的页脚" class="headerlink" title="修改Next主题的页脚"></a>修改Next主题的页脚</h3><blockquote>
+<ul>
+<li>有些人不喜欢页脚的<strong>由Hexo强力驱动 | 主题 - NexT.Pisces</strong>，那就需要修改找到 <strong>themes\next\layout_partials</strong>中的<strong>footer.swig</strong>和<strong>themes\next\languages</strong>中的<strong>zh-Hans.yml</strong></li>
+</ul>
+</blockquote>
+<h3 id="添加Rss功能"><a href="#添加Rss功能" class="headerlink" title="添加Rss功能"></a>添加Rss功能</h3><p>这个功能对SEO友好，官方说得并不清楚，我这里具体说下</p>
+<blockquote>
+<ul>
+<li><strong>npm install hexo-generator-feed –save</strong>执行该命令，安装插件</li>
+<li>编辑<strong>主题配置文件</strong>_config.yml， rss修改为如下</li>
+<li>rss: /atom.xml</li>
+<li>执行生成命令即可</li>
+</ul>
+</blockquote>
+<h3 id="添加sitemap站点地图"><a href="#添加sitemap站点地图" class="headerlink" title="添加sitemap站点地图"></a>添加sitemap站点地图</h3><p>这里可以查看另一篇博客，<a href="http://blog.sunxinfei.com/2017/05/04/Hexo-SEO/">Blog + SEO</a></p>
+<h3 id="修改文章内链接文本样式"><a href="#修改文章内链接文本样式" class="headerlink" title="修改文章内链接文本样式"></a>修改文章内链接文本样式</h3><p>修改为蓝色，修改文件themes\next\source\css_common\components\post\post.styl，添加如下css样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.post-body</span> <span class="selector-tag">p</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#0593d3</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: none;</span><br><span class="line"></span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    <span class="selector-tag">color</span>: <span class="selector-id">#0477ab</span>;</span><br><span class="line">    <span class="selector-tag">text-decoration</span>: <span class="selector-tag">underline</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="作者头像变成圆形"><a href="#作者头像变成圆形" class="headerlink" title="作者头像变成圆形"></a>作者头像变成圆形</h3><p>打开自定义CSS： \themes\next\source\css_custom\custom.styl 加入</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.site-author-image</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">2px</span> dashed <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">animation</span>: cycle <span class="number">2s</span> <span class="number">0.5s</span> forwards;</span><br><span class="line">  <span class="attribute">transition</span>: border-radius <span class="number">2s</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改博主名字号大小,也在该文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.site-author-name</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="添加版权信息"><a href="#添加版权信息" class="headerlink" title="添加版权信息"></a>添加版权信息</h3><p>效果就是博客最下面的版权信息和结束语，这里参考了一些教程，顺便看了下工程文件中swig的源码，下面提供给大家参考：</p>
+<h4 id="新建passage-end-tag-swig文件"><a href="#新建passage-end-tag-swig文件" class="headerlink" title="新建passage-end-tag.swig文件"></a>新建passage-end-tag.swig文件</h4><p>在路径 \themes\next\layout\_macro 中添加 passage-end-tag.swig 文件，代码不需解释意思很明显，其内容为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.passage_end_tag.enabled %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align:center;color: #ccc;font-size:14px;"</span>&gt;</span></span><br><span class="line">------ 本文结束 感谢阅读------<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>   </span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"post-copyright"</span> <span class="attr">style</span>=<span class="string">"border-left:3px solid #ff1700;list-style:none;margin:2em 0 0;padding:0.5em 1em;background-color:#f9f9f9"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"post-copyright-author"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">strong</span>&gt;</span>本文作者：<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">      XinFei</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"post-copyright-link"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">strong</span>&gt;</span>本文链接：<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; page.permalink &#125;&#125;"</span> <span class="attr">title</span>=<span class="string">"&#123;&#123; page.title &#125;&#125;"</span>&gt;</span>&#123;&#123; page.permalink &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"post-copyright-license"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">strong</span>&gt;</span>声明： <span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line">      原创文章，有问题请评论中留言。支持友情链接。非商业转载请注明作者及出处。商业转载请联系作者本人。</span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改-post-swig-文件"><a href="#修改-post-swig-文件" class="headerlink" title="修改 post.swig 文件"></a>修改 post.swig 文件</h4><p>在 \themes\next\layout\_macro\post.swig 中， post-body标签 之后， post-footer标签之前的两个DIV之前添加，代码含义很简单就是判断下是不是首页，从而引入文件，如下代码为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  &#123;% if not is_index %&#125;</span><br><span class="line">    &#123;% include 'passage-end-tag.swig' %&#125;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="启用功能"><a href="#启用功能" class="headerlink" title="启用功能"></a>启用功能</h4><p>在主题配置文件 _config.yml 中添加以下字段开启此功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#文章末尾是否添加“本文结束”标记</span><br><span class="line">passage_end_tag:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
+<h3 id="添加自定义页面和菜单按钮"><a href="#添加自定义页面和菜单按钮" class="headerlink" title="添加自定义页面和菜单按钮"></a>添加自定义页面和菜单按钮</h3><p>在菜单栏添加例如”H5作品”之类的，非Hexo自带页面。<br>修改Hexo 目录下的_config.yml文件，找到skip_render，添加跳过渲染的目标文件或者目标路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">skip_render: </span><br><span class="line"> - README.md</span><br><span class="line"> - H5/*</span><br></pre></td></tr></table></figure>
+<p>修改主题配置文件_config.yml，即h/themes/next/_config.yml，添加 h5 到 menu 中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: /</span><br><span class="line">  archives: /archives</span><br><span class="line">  #categories: /categories</span><br><span class="line">  #about: /about</span><br><span class="line">  tags: /tags</span><br><span class="line">  h5: /H5</span><br></pre></td></tr></table></figure>
+<p>但是图标会是一个问号，需要我们设置下icon，图标名称 是<a href="http://fontawesome.dashgame.com/" target="_blank" rel="noopener"><em> Font Awesome </em></a>图标的名字（不必带 fa- 前缀）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">menu_icons:</span><br><span class="line">  enable: true</span><br><span class="line">  #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome</span><br><span class="line">  home: home</span><br><span class="line">  about: user</span><br><span class="line">  categories: th</span><br><span class="line">  schedule: calendar</span><br><span class="line">  tags: tags</span><br><span class="line">  archives: archive</span><br><span class="line">  sitemap: sitemap</span><br><span class="line">  commonweal: heartbeat</span><br><span class="line">  h5: html5</span><br></pre></td></tr></table></figure>
+<p>修改NexT主题zh-Hans.yml文件，即/themes/next/languages/zh-Hans.yml，添加对应文本到 menu 中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: 首页</span><br><span class="line">  archives: 归档</span><br><span class="line">  categories: 分类</span><br><span class="line">  tags: 标签</span><br><span class="line">  about: 关于</span><br><span class="line">  search: 搜索</span><br><span class="line">  schedule: 日程表</span><br><span class="line">  sitemap: 站点地图</span><br><span class="line">  commonweal: 公益404</span><br><span class="line">  h5: H5作品</span><br></pre></td></tr></table></figure>
+<p>到此按钮添加完毕了，在H5文件夹下面可以添加自定义的html页就可以了。<br>但是如果我们想添加例如博客中的H5的那种既有Next风格，页面内容是自定义的话，就可以先在H5文件夹下创建一个md文件，然后用命令生成html页面，复制出来生成文件的源代码替换了之前的md文件，并且命名成html页面，重新设置上skip_render，这样我们就得到具有Next风格的html静态页了，里面的content内容我们随意书写，和普通html页一样。</p>
+<h3 id="使用第三方图片存储器"><a href="#使用第三方图片存储器" class="headerlink" title="使用第三方图片存储器"></a>使用第三方图片存储器</h3><p>专业上这个叫做图床，是储存图片的服务器，因为一般我们博客无论是放到github上还是自己的服务器上，下载多媒体和存储多媒体是比较费资源，所以一般我们需要找一个稳定好用的图床来存储这些多媒体，我们只需要在博文中添加图片的网址即可，而且图床一般也自带防盗链，图片识别，图片压缩等丰富的功能来方便用户使用，这里我使用的是<a href="https://portal.qiniu.com/signup?code=3l7nswu330w9e" target="_blank" rel="noopener"><em>七牛云</em></a>，这种免费的图床服务器有很多，大家看心情挑选即可，很简单，就不再赘述了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">
+------ 本文结束 感谢阅读------</div>
+<br/>
+<div>   
+  <ul class="post-copyright" style="border-left:3px solid #ff1700;list-style:none;margin:2em 0 0;padding:0.5em 1em;background-color:#f9f9f9">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      XinFei
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://blog.sunxinfei.com/2017/05/03/安装Next主题/" title="安装Next主题">http://blog.sunxinfei.com/2017/05/03/安装Next主题/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>声明： </strong>
+      原创文章，有问题请评论中留言。支持友情链接。非商业转载请注明作者及出处。商业转载请联系作者本人。
+    </li>
+  </ul>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/wxzf.jpg" alt="XinFei WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://op3cmr9ix.bkt.clouddn.com/blog/zfbzf.jpg" alt="XinFei Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          
+            <a href="/tags/Next/" rel="tag"># Next</a>
+          
+            <a href="/tags/静态博客/" rel="tag"># 静态博客</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/02/Sublime-Markdown/" rel="next" title="Sublime + Markdown">
+                <i class="fa fa-chevron-left"></i> Sublime + Markdown
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/04/Hexo-SEO/" rel="prev" title="Blog + SEO">
+                Blog + SEO <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://op3cmr9ix.bkt.clouddn.com/head/head.jpg"
+               alt="XinFei" />
+          <p class="site-author-name" itemprop="name">XinFei</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/SunXinFei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:sunxinfei147@gmail.com" target="_blank" title="eMail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  eMail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-config-yml主题配置文件"><span class="nav-number">1.</span> <span class="nav-text">关于_config.yml主题配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加评论系统"><span class="nav-number">2.</span> <span class="nav-text">添加评论系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加「标签」和「分类」页面"><span class="nav-number">3.</span> <span class="nav-text">添加「标签」和「分类」页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加数据统计"><span class="nav-number">4.</span> <span class="nav-text">添加数据统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加阅读次数统计（LeanCloud"><span class="nav-number">5.</span> <span class="nav-text">添加阅读次数统计（LeanCloud)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签-分类数量统计不准确"><span class="nav-number">6.</span> <span class="nav-text">标签/分类数量统计不准确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Next主题的页脚"><span class="nav-number">7.</span> <span class="nav-text">修改Next主题的页脚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加Rss功能"><span class="nav-number">8.</span> <span class="nav-text">添加Rss功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加sitemap站点地图"><span class="nav-number">9.</span> <span class="nav-text">添加sitemap站点地图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改文章内链接文本样式"><span class="nav-number">10.</span> <span class="nav-text">修改文章内链接文本样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者头像变成圆形"><span class="nav-number">11.</span> <span class="nav-text">作者头像变成圆形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加版权信息"><span class="nav-number">12.</span> <span class="nav-text">添加版权信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建passage-end-tag-swig文件"><span class="nav-number">12.1.</span> <span class="nav-text">新建passage-end-tag.swig文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-post-swig-文件"><span class="nav-number">12.2.</span> <span class="nav-text">修改 post.swig 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启用功能"><span class="nav-number">12.3.</span> <span class="nav-text">启用功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加自定义页面和菜单按钮"><span class="nav-number">13.</span> <span class="nav-text">添加自定义页面和菜单按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用第三方图片存储器"><span class="nav-number">14.</span> <span class="nav-text">使用第三方图片存储器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XinFei</span>
+</div>
+
+
+<div class="powered-by">
+  支持游客评论
+</div>
+
+<div class="theme-info">
+  Notes
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 90243, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 90243, xid: "2017/05/03/安装Next主题/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/90243/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("5nYphyQ98AHQaP6RnrI1yJkE-gzGzoHsz", "yM8MfCl0Wziz8f0eWWCfALzA");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
